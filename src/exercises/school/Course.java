@@ -65,4 +65,36 @@ public class Course {
                 '}';
     }
 
+    // equals
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Course)) {
+            return false;
+        }
+
+        Course c = (Course) obj;
+
+        if (c.getInstructor().equals(this.instructor) &&
+                c.getName() == this.name &&
+                c.getCourseId() == this.courseId &&
+                c.getRoster() == this.roster) {
+            return true;
+
+        }
+
+        return false;
+    }
+
+    // main
+    public static void main(String[] args) {
+        Student s1 = new Student("Jon", 1);
+        Student s2 = new Student("Jon", 1);
+        Student s3 = new Student("Jan", 1);
+        Student s4 = s1;
+        System.out.println(s1.equals(s1));
+        System.out.println(s1.equals(s2));
+        System.out.println(s1.equals(s3));
+        System.out.println(s1.equals(s4));
+    }
+
 }

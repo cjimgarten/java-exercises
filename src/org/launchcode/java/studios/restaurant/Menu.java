@@ -13,6 +13,10 @@ public class Menu {
     private Date lastUpdate;
 
     // constructor
+    public Menu() {
+        this(new HashMap<>());
+    }
+
     public Menu(HashMap<String, MenuItem> menuItems) {
         this.menuItems = menuItems;
         this.lastUpdate = new Date();
@@ -44,33 +48,13 @@ public class Menu {
         this.menuItems.remove(itemName);
     }
 
-    // main method
-    public static void main(String[] args) {
-
-        MenuItem item1 = new MenuItem(9.00, "burger",
-                MenuItem.MAIN_COURSE, false);
-
-        MenuItem item2 = new MenuItem(5.00, "cake",
-                MenuItem.DESSERT, true);
-
-        MenuItem item3 = new MenuItem(7.00, "wings",
-                MenuItem.APPETIZER, false);
-
-        HashMap<String, MenuItem> menuItems = new HashMap<>();
-        menuItems.put("burger", item1);
-        menuItems.put("cake", item2);
-        menuItems.put("wings", item3);
-
-        Menu menu = new Menu(menuItems);
-        System.out.println(menu.getMenuItems());
-
-        menu.removeMenuItem("burger");
-        menu.removeMenuItem("cake");
-        menu.removeMenuItem("wings");
-        System.out.println(menu.getMenuItems());
-
-        menu.addMenuItem("burger", item1);
-        System.out.println(menu.getMenuItems());
+    // to string
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuItems=" + menuItems +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
 }

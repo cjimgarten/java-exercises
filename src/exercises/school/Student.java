@@ -11,8 +11,13 @@ public class Student {
     private int numberOfCredits;
     private double gpa;
 
-    // constructor
-    public Student(String name, int studentId, int numberOfCredits, double gpa) {
+    // constructors
+    public Student(String name, int studentId) {
+        this(name, studentId, 0, 0.0);
+    }
+
+    public Student(String name, int studentId,
+                   int numberOfCredits, double gpa) {
         this.name = name;
         this.studentId = studentId;
         this.numberOfCredits = numberOfCredits;
@@ -52,6 +57,29 @@ public class Student {
         this.gpa = gpa;
     }
 
+    // add a grade
+    public void addGrade(double points, double credits) {
+        double qualityScore = points * credits;
+        this.numberOfCredits += credits;
+        double totalQualityScore = (this.gpa * this.numberOfCredits) + qualityScore;
+        this.gpa = (totalQualityScore) / (this.numberOfCredits);
+    }
+
+    // get the students grade level
+    public String getGradeLevel() {
+        String  gradeLevel;
+        if (this.numberOfCredits < 30) {
+            gradeLevel = "Freshman";
+        } else if (this.numberOfCredits < 60) {
+            gradeLevel = "Sophmore";
+        } else if (this.numberOfCredits < 90) {
+            gradeLevel = "Junior";
+        } else {
+            gradeLevel = "Senior";
+        }
+        return gradeLevel;
+    }
+
     // to string
     @Override
     public String toString() {
@@ -61,6 +89,26 @@ public class Student {
                 ", numberOfCredits=" + numberOfCredits +
                 ", gpa=" + gpa +
                 '}';
+    }
+
+    // equals
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Student)) {
+            return false;
+        }
+
+        Student s = (Student) obj;
+
+        if (s.getName().equals(this.name) &&
+                s.getStudentId() == this.studentId &&
+                s.getNumberOfCredits() == this.numberOfCredits &&
+                s.getGpa() == this.gpa) {
+            return true;
+
+        }
+
+        return false;
     }
 
 }

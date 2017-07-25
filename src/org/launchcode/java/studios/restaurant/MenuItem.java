@@ -17,9 +17,8 @@ public class MenuItem {
     private boolean newItem;
 
     // constructor
-    public MenuItem(double price,
-                    String description, String category,
-                    boolean newItem) {
+    public MenuItem(double price, String description,
+                    String category, boolean newItem) {
         this.price = price;
         this.description = description;
         this.category = category;
